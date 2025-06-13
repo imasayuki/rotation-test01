@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene vr-mode-ui="enabled: true">
+      <a-box id="myBox" position="0 0 -3" material="color: #4CC3D9"></a-box>
+
+      <a-sky color="#ECECEC"></a-sky>
+      <a-entity camera></a-entity>
+
+      <script>
+        // ページが読み込まれた後に実行するJavaScript
+        document.addEventListener("DOMContentLoaded", function() {
+          // ボックス要素を取得
+          var box = document.querySelector("#myBox");
+          
+          // アニメーション関数を定義
+          function animateBox() {
+            // 現在のボックスの回転を取得
+            var rotation = box.getAttribute("rotation");
+            
+            // Y軸の回転を増やす
+            rotation.y += 1;
+            
+            // 回転を更新
+            box.setAttribute("rotation", rotation);
+            
+            // 次のフレームのアニメーションをリクエスト
+            requestAnimationFrame(animateBox);
+          }
+          
+          // アニメーションを開始
+          animateBox();
+        });
+      </script>
+    </a-scene>
+  </body>
+</html>
+
